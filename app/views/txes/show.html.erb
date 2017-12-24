@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Txid:</strong>
+  <%= @tx.txid %>
+</p>
+
+<p>
+  <strong>Version:</strong>
+  <%= @tx.version %>
+</p>
+
+<p>
+  <strong>Locktime:</strong>
+  <%= @tx.locktime %>
+</p>
+
+<%= link_to 'Edit', edit_tx_path(@tx) %> |
+<%= link_to 'Back', txes_path %>

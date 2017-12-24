@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+# Load Rails
+ENV['RAILS_ENV'] = ARGV[0] || 'development'
+require './config/environment'
+# require_relative '../lib/bintcoin_monitor/monitor'
+
+if $0 == __FILE__
+
+  args = {
+    ask_tx:    ARGV.find{|a| a[/tx=(.+)/, 1] } && $1,
+    ask_block: ARGV.find{|a| a[/block=(.+)/, 1] } && $1,
+    use_node:  ARGV.find{|a| a[/node=(.+)/, 1] } && $1,
+    send_tx:   ARGV.find{|a| a[/send_tx=(.+)/, 1] } && $1,
+    set_project:  ARGV.find{|a| a[/project=(.+)/, 1] } && $1,
+    callback:  proc{|i|
+      case i
+        when Bitcoin::Protocol::Block
+          puts "INFO  network: SAVING @ask_block: #{i.hash}"
+          File.open("block-#{i.hash}.bin", 'wb'){|f| f.print i.payload }
+          File.open("block-#{i.hash}.json", 'wb'){|f| f.print i.to_json }
+        when Bitcoin::Protocol::Tx
+          puts "INFO  network: SAVING @ask_tx: #{i.hash}"
+          File.open("tx-#{i.hash}.bin", 'wb'){|f| f.print i.payload }
+          File.open("tx-#{i.hash}.json", 'wb'){|f| f.print i.to_json }
+      end
+      EM.stop
+    }
+  }
+
+
+  EM.run do
+    if args[:set_project]
+      Bitcoin.network = args[:set_project].to_sym
+      p Bitcoin.network_project
+    end
+    if args[:use_node]
+      BintcoinMonitor::Connection.connect_random_from_dns([args[:use_node]], 1, nil, args)
+    else
+      BintcoinMonitor::Connection.connect_random_from_dns([], 1, nil, args)
+    end
+  end
+end

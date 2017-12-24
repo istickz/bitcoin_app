@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @block.height %>
+</p>
+
+<p>
+  <strong>Hash:</strong>
+  <%= @block.hash %>
+</p>
+
+<p>
+  <strong>Version:</strong>
+  <%= @block.version %>
+</p>
+
+<p>
+  <strong>Prevhash:</strong>
+  <%= @block.prevhash %>
+</p>
+
+<p>
+  <strong>Merkleroot:</strong>
+  <%= @block.merkleroot %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @block.time %>
+</p>
+
+<p>
+  <strong>Bits:</strong>
+  <%= @block.bits %>
+</p>
+
+<p>
+  <strong>Nonce:</strong>
+  <%= @block.nonce %>
+</p>
+
+<p>
+  <strong>Orphan:</strong>
+  <%= @block.orphan %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @block.status %>
+</p>
+
+<p>
+  <strong>Filen:</strong>
+  <%= @block.filen %>
+</p>
+
+<p>
+  <strong>Filepos:</strong>
+  <%= @block.filepos %>
+</p>
+
+<%= link_to 'Edit', edit_block_path(@block) %> |
+<%= link_to 'Back', blocks_path %>
