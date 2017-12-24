@@ -15,13 +15,6 @@ ActiveRecord::Schema.define(version: 20171224152248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "block_txes", force: :cascade do |t|
-    t.integer "block_id"
-    t.bigint "tx_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "blocks", force: :cascade do |t|
     t.binary "block_hash"
     t.integer "ver"
@@ -32,6 +25,13 @@ ActiveRecord::Schema.define(version: 20171224152248) do
     t.bigint "nonce"
     t.integer "n_tx"
     t.integer "size"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "blocks_txes", force: :cascade do |t|
+    t.integer "block_id"
+    t.bigint "tx_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
