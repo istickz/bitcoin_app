@@ -1,0 +1,30 @@
+= link_to 'Back', blocks_path
+
+table
+  tr
+    td Hash:
+    td= @block.block_hash
+  tr
+    td Version:
+    td= @block.ver
+  tr
+    td Prev Block
+    td= @block.prev_block
+  tr
+    td mrkl_root
+    td= @block.mrkl_root
+  tr
+    td Time
+    td= @block.time
+  tr
+    td Bits
+    td= @block.bits
+  tr
+    td Nonce
+    td= @block.nonce
+  tr
+    td N Tx
+    td= @block.n_tx
+  tr
+    td Size
+    td= @block.size

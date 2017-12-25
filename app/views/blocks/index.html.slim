@@ -1,0 +1,30 @@
+p#notice
+  = notice
+h1
+  | Blocks
+table.table.table-striped.table-responsive
+  thead
+    tr
+      th block_hash
+      th ver
+      th prev_block
+      th mrkl_root
+      th time
+      th bits
+      th nonce
+      th n_tx
+      th size
+  tbody
+    - @blocks.each do |block|
+      tr
+        td= link_to block.block_hash, block
+        td= block.ver
+        td= block.prev_block
+        td= block.mrkl_root
+        td= block.time
+        td= block.bits
+        td= block.nonce
+        td= block.n_tx
+        td= block.size
+
+

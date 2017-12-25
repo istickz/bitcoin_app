@@ -5,6 +5,7 @@ class CreateTxIns < ActiveRecord::Migration[5.1]
       t.binary :prevout_hash
       t.integer :n
       t.binary :script_sig
+      t.binary :coinbase
       t.timestamps
     end
   end

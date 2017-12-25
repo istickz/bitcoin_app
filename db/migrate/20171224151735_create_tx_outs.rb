@@ -4,6 +4,7 @@ class CreateTxOuts < ActiveRecord::Migration[5.1]
       t.integer :tx_id,  limit: 5
       t.integer :value,  limit: 5
       t.binary :script_pubkey
+      t.string :address
       t.timestamps
     end
   end

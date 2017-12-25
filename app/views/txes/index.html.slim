@@ -1,0 +1,44 @@
+h1
+  | Transactions
+table.table.table-striped.table-responsive
+  thead
+    tr
+      th Hash
+      th Inputs
+      th Outputs
+      th Size
+      th Created At
+
+  tbody
+    - @txes.each do |tx|
+      tr
+        td= link_to tx.tx_hash, tx
+        td
+          - tx.tx_ins.each do |tx_in|
+            p
+              - if tx_in.coinbase.present?
+                | COINBASE
+              - else
+                = tx_in.prevout_hash
+        td
+          - tx.tx_outs.each do |tx_out|
+            p
+              span=tx_out.address_type
+              = tx_out.address
+              | ->
+              = tx_out.value / 10**8
+              | BTC
+
+        td= tx.size
+        td= tx.created_at
+
+= paginate @txes
+
+
+
+
+
+
+
+
+

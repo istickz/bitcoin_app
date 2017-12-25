@@ -17,7 +17,7 @@ module BintcoinMonitor
       log.info { "received transaction: #{tx.hash}" }
       puts tx.to_json
 
-      BintcoinMonitor::Receivers::TxReceiver.call(tx.to_hash)
+      BintcoinMonitor::Receivers::TxReceiver.call(tx.to_hash(with_address: true))
 
       if tx.hash == @ask_tx
         @args[:result] = tx

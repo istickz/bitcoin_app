@@ -1,0 +1,28 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8" /
+    meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" /
+    meta content="" name="description" /
+    meta content="" name="author" /
+    link href="../../../../favicon.ico" rel="icon" /
+    title Bitcoin Monitor
+    = stylesheet_pack_tag 'application'
+    = javascript_pack_tag 'application'
+  body
+    nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
+      a.navbar-brand href="#"  Bitcoin Monitor
+      button.navbar-toggler aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarsExampleDefault" data-toggle="collapse" type="button"
+        span.navbar-toggler-icon
+      #navbarsExampleDefault.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link href="#"
+              | Home
+              span.sr-only (current)
+          li.nav-item
+            = link_to 'Transactions', txes_path, class: 'nav-link'
+          li.nav-item
+            = link_to 'Blocks', blocks_path, class: 'nav-link'
+
+    = yield
