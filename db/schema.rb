@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171224152248) do
+ActiveRecord::Schema.define(version: 20171225074508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20171224152248) do
     t.integer "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["block_hash"], name: "index_blocks_on_block_hash", unique: true
   end
 
   create_table "blocks_txes", force: :cascade do |t|
@@ -34,6 +35,8 @@ ActiveRecord::Schema.define(version: 20171224152248) do
     t.bigint "tx_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["block_id"], name: "index_blocks_txes_on_block_id"
+    t.index ["tx_id"], name: "index_blocks_txes_on_tx_id"
   end
 
   create_table "tx_ins", force: :cascade do |t|
@@ -64,6 +67,7 @@ ActiveRecord::Schema.define(version: 20171224152248) do
     t.integer "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tx_hash"], name: "index_txes_on_tx_hash", unique: true
   end
 
 end
