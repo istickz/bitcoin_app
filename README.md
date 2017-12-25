@@ -21,12 +21,21 @@ rpcport=8332
 ```
 ## Run Test network
 Start Bitcoin Core client.
+## Prepare Database
+```
+  bin/rails db:create
+  bin/rails db:migrate
+```
+## Run Bitcoin monitor
+  `bin/bintcoin_monitor`
+## Run Rails application
+```
+  bin/rails s
+```
 
-# Run Rails application
+Blocks List: http://localhost:3000/blocks
 
-
-
-
+Transactions List: http://localhost:3000/txes
 
 Related links
 
