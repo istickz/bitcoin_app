@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171225074508) do
+ActiveRecord::Schema.define(version: 20171227211644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(version: 20171225074508) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tx_hash"], name: "index_txes_on_tx_hash", unique: true
+  end
+
+  create_table "wallets", force: :cascade do |t|
+    t.string "address"
+    t.text "privkey"
+    t.text "pubkey"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
