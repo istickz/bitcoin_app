@@ -16,6 +16,7 @@ module BintcoinMonitor
             prevout_hash: tin.dig('prev_out', 'hash'),
             n: tin.dig('prev_out', 'n'),
             script_sig: tin['scriptSig'],
+            sequence: tin['sequence']
           )
         end
 

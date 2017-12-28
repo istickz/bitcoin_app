@@ -6,7 +6,7 @@ class CreateBlocks < ActiveRecord::Migration[5.1]
       t.binary :prev_block
       t.binary :mrkl_root
       t.integer :time
-      t.integer :bits
+      t.integer :bits, limit: 5
       t.integer :nonce, limit: 5
       t.integer :n_tx
       t.integer :size

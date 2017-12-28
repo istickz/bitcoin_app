@@ -14,4 +14,8 @@ class TxOut < ApplicationRecord
         'UNKNOWN'
     end
   end
+
+  def btc_value
+    sprintf "%.8f", (value.to_f / 10**8)
+  end
 end
