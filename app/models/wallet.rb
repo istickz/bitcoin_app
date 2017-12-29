@@ -1,7 +1,6 @@
 class Wallet < ApplicationRecord
   paginates_per 50
   def balance
-    # TODO: Переписать с учетом транзакций включенных в блок
     query = <<-SQL.strip_heredoc
     select 
       sum(tx_outs.value)
@@ -11,6 +10,7 @@ class Wallet < ApplicationRecord
         tx_outs.id
       from tx_ins
       join txes on txes.tx_hash = tx_ins.prevout_hash
+      join blocks_txes on blocks_txes.tx_id = txes.id
       join tx_outs on tx_outs.id = (
           select id from tx_outs
           where tx_outs.tx_id = txes.id
