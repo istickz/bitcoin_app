@@ -1,6 +1,5 @@
 class Wallet < ApplicationRecord
   paginates_per 50
-
   def balance
     query = <<-SQL.strip_heredoc
     select 
@@ -25,6 +24,9 @@ class Wallet < ApplicationRecord
     ActiveRecord::Base.connection.execute(query).to_a.first['sum']
   end
 
+  def txes
+    Tx.joins(:tx_outs).where('tx_outs.address = ?', address)
+  end
 
   def balance_btc
     sprintf "%.8f", (balance.to_f / 10**8)

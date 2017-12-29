@@ -1,8 +1,9 @@
 = link_to 'Back', wallets_path
+
 table
   tr
     td Address:
-    td= @tx.tx_hash
+    td= @wallet.address
   tr
     td Balance:
     td= @wallet.balance_btc
@@ -10,3 +11,14 @@ table
     td Created at:
     td= @wallet.created_at
 
+h1 Transactions
+table.table.table-striped.table-responsive
+  thead
+    tr
+      th Hash
+      th Inputs
+      th Outputs
+      th Size
+      th Created At
+  tbody
+    = render @wallet.txes
