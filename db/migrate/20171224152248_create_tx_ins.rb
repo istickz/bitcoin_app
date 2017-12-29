@@ -6,6 +6,7 @@ class CreateTxIns < ActiveRecord::Migration[5.1]
       t.integer :n
       t.binary :script_sig
       t.binary :coinbase
+      t.integer :sequence, limit: 5
       t.timestamps
     end
   end

@@ -7,7 +7,6 @@ class CreateTxes < ActiveRecord::Migration[5.1]
       t.integer :vout_sz
       t.integer :lock_time
       t.integer :size
-      t.integer :sequence, limit: 5
       t.timestamps
     end
   end

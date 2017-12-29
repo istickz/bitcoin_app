@@ -67,6 +67,13 @@ module BintcoinMonitor
           send_data(Bitcoin::Protocol.pkt('tx', tx.to_payload))
           p [:sent, tx.hash]
         end
+        if @send_hex
+          tx = Bitcoin::P::Tx.new(htb(@send_hex))
+          send_data(Bitcoin::Protocol.pkt('tx', tx.to_payload))
+          p [:sent, tx.hash]
+          EM.stop
+        end
+
       }
     end
 
@@ -112,7 +119,7 @@ module BintcoinMonitor
       @parser = Bitcoin::Protocol::Parser.new( self )
 
       @args = opts
-      @ask_tx, @ask_block, @send_tx = opts.values_at(:ask_tx, :ask_block, :send_tx)
+      @ask_tx, @ask_block, @send_tx, @send_hex = opts.values_at(:ask_tx, :ask_block, :send_tx, :send_hex)
     end
 
     def receive_data(data); @parser.parse(data); end

@@ -8,7 +8,7 @@ class Tx < ApplicationRecord
     tx_hash
   end
 
-  def as_json
+  def to_hash
     h = {
       hash: tx_hash,
       ver: ver,
@@ -27,7 +27,7 @@ class Tx < ApplicationRecord
         scriptSig: tx_in.script_sig,
       }
       tx_in_h[:sequence] = tx_in.sequence if tx_in.sequence.present?
-      tx_in_hb
+      tx_in_h
     end
 
     h[:out] = tx_outs.map do |tx_out|

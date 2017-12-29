@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20171227234749) do
     t.integer "n"
     t.binary "script_sig"
     t.binary "coinbase"
+    t.bigint "sequence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,7 +66,6 @@ ActiveRecord::Schema.define(version: 20171227234749) do
     t.integer "vout_sz"
     t.integer "lock_time"
     t.integer "size"
-    t.bigint "sequence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tx_hash"], name: "index_txes_on_tx_hash", unique: true
