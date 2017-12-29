@@ -27,9 +27,9 @@ module BintcoinMonitor
 
     def on_block(block)
       log.info { "received block: #{block.hash}" }
-      # puts block.to_json
+      puts block.to_json
 
-      # BintcoinMonitor::Receivers::BlockReceiver.call(block.to_hash)
+      BintcoinMonitor::Receivers::BlockReceiver.call(block.to_hash)
 
       if block.hash == @ask_block
         if @ask_tx
