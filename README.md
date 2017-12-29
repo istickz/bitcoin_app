@@ -6,7 +6,7 @@
   bin/rails db:migrate
 ```
 ## Run Bitcoin monitor
-  `bin/bintcoin_monitor`
+  `bin/bitcoin_monitor`
 ## Run Rails application
 ```
   bin/rails s
