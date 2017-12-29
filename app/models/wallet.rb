@@ -1,6 +1,7 @@
 class Wallet < ApplicationRecord
   paginates_per 50
   def balance
+    # TODO: Переписать с учетом транзакций включенных в блок
     query = <<-SQL.strip_heredoc
     select 
       sum(tx_outs.value)
