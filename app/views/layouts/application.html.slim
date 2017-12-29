@@ -21,6 +21,8 @@ html lang="en"
               | Home
               span.sr-only (current)
           li.nav-item
+            = link_to 'Wallets', wallets_path, class: 'nav-link'
+          li.nav-item
             = link_to 'Transactions', txes_path, class: 'nav-link'
           li.nav-item
             = link_to 'Blocks', blocks_path, class: 'nav-link'

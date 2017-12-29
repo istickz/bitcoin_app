@@ -2,19 +2,23 @@
 
 - if @tx.blocks.exists?
 
-table
-  tr
-    td Hash:
-    td= @tx.tx_hash
-  tr
-    td Ins:
-    td= @tx.tx_ins.count
-  tr
-    td Outs:
-    td= @tx.tx_outs.count
-  tr
-    td Size:
-    td= @tx.size
-  tr
-    td Created at:
-    td= @tx.created_at
+.panel
+  table
+    tr
+      td Hash:
+      td= @tx.tx_hash
+    tr
+      td Ins:
+      td= @tx.tx_ins.count
+    tr
+      td Outs:
+      td= @tx.tx_outs.count
+    tr
+      td Size:
+      td= @tx.size
+    tr
+      td Created at:
+      td= @tx.created_at
+
+.panel
+  = @tx.as_json.to_json

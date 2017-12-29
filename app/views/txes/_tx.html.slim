@@ -10,10 +10,10 @@ tr
   td
     - tx.tx_outs.each do |tx_out|
       p
-        span=tx_out.address_type
+        small= "(#{tx_out.address_type})"
         = tx_out.address
         | ->
-        = tx_out.value / 10**8
+        = tx_out.value.to_f / 10**8
         | BTC
 
   td= tx.size
