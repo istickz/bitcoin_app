@@ -1,0 +1,12 @@
+= link_to 'Back', wallets_path
+table
+  tr
+    td Address:
+    td= @tx.tx_hash
+  tr
+    td Balance:
+    td= @wallet.balance_btc
+  tr
+    td Created at:
+    td= @wallet.created_at
+

@@ -21,24 +21,16 @@ Transactions List: http://localhost:3000/txes
 Bitcoin.network = :testnet3
 include Bitcoin::Builder
 
-user1 = User.create(email: 'wallet1@example.com', password: 'wallet1@example.com', password_confirmation: 'wallet1@example.com')
-NewWalletService.new(user: user1).call
+wallet1 = NewWalletService.call
+wallet2 = NewWalletService.call
 
-user2 = User.create(email: 'wallet2@example.com', password: 'wallet2@example.com', password_confirmation: 'wallet2@example.com')
-NewWalletService.new(user: user2).call
+# Отправляем 1.3BTC на wallet1 через https://testnet.manu.backend.hamburg/faucet
 
-
-wallet1 = user1.wallets.first
-wallet2 = user2.wallets.first
-
-
-# Отправляем 1.3BTC на w1 через https://testnet.manu.backend.hamburg/faucet
-
-# Sent! TX ID: 5d8d1fc7dfbaa0f0cfa3a7e30c62b1935095fd27f1b2a6cb3b4947899676addd
+# Sent! TX ID: 4c987db8ff5ae655931d014516cd9806bc75c3bbb0eac71e3ac1cd0d124233ae
 
 # Находим у себя транзакцию, где нам прислали 1.3BTC
 # В принципе можно и искать любой непотраченный выход, но и транзакция сойдет
-tx = Tx.find_by tx_hash: '5d8d1fc7dfbaa0f0cfa3a7e30c62b1935095fd27f1b2a6cb3b4947899676addd'
+tx = Tx.find_by tx_hash: '4c987db8ff5ae655931d014516cd9806bc75c3bbb0eac71e3ac1cd0d124233ae'
 
 # Проверяем баланс нашего кошелька
 
@@ -81,10 +73,11 @@ end
 
 # Получаем hex транзакции
 hex = new_tx.to_payload.unpack("H*")[0]
+"0100000001ae3342120dcdc13a1ec7eab0bbc375bc0698cd1645011d9355e65affb87d984c000000008a4730440220501eadd3addf6f803bfa4a122f53afee735df3d083a0ec37ac3f190c3fbd925f02203d7f0e9fd334d97e2225f1947a261077a0b6796c85aef78a457fa4d3fdbbe7c30141040fcc1a14462416095bd6d806cdcfa4d2bbd7a02678cf83f1b08c56a94f95295473c227e58d8ceb8af887c5f12ec0c6d4e93b425cc696f0c846f80f49ead2dc63ffffffff02002d3101000000001976a914638653d21fb22b39c2a95db6e19f16739082c3c588ac40357f06000000001976a914bbc5664f9e98e60c8d7334e481cd65d45ed5097088ac00000000"
+
 
 #Отправим транзакцию в сеть
 
-$ bin/bitcoin_monitor send_hex=0100000001ddad76968947493bcba6b2f127fd955093b1620ce3a7a3cff0a0badfc71f8d5d000000008a47304402201b38f10ce6744ec7f5a2fa21e943cb1ade3d64bd7a73e70e1f1f4c4ad7908aad022007a413a8e8c4425cde4c8db7ce65c41d070382822ae94f7c22db03ad8541fa280141041222b58a9c3508f442cc9842d07ab38a39833fd71c8eee12d61e62aba68839e18585afb5f05054b08b5258e16cf39ad07e41aa8f74822aa596bead065e9335d2ffffffff02002d3101000000001976a914cae9842080f87485529d74ae6df5246e5f9a517288ac40357f06000000001976a9147f3e1f904c4e8d4cecbc1223b984f66fba90e31788ac00000000
-
+$ bin/bitcoin_monitor send_hex=0100000001ae3342120dcdc13a1ec7eab0bbc375bc0698cd1645011d9355e65affb87d984c000000008a4730440220501eadd3addf6f803bfa4a122f53afee735df3d083a0ec37ac3f190c3fbd925f02203d7f0e9fd334d97e2225f1947a261077a0b6796c85aef78a457fa4d3fdbbe7c30141040fcc1a14462416095bd6d806cdcfa4d2bbd7a02678cf83f1b08c56a94f95295473c227e58d8ceb8af887c5f12ec0c6d4e93b425cc696f0c846f80f49ead2dc63ffffffff02002d3101000000001976a914638653d21fb22b39c2a95db6e19f16739082c3c588ac40357f06000000001976a914bbc5664f9e98e60c8d7334e481cd65d45ed5097088ac00000000
 
 ```

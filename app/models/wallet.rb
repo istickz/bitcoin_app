@@ -1,5 +1,6 @@
 class Wallet < ApplicationRecord
-  belongs_to :user
+  paginates_per 50
+
   def balance
     query = <<-SQL.strip_heredoc
     select 

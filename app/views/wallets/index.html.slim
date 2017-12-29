@@ -1,0 +1,26 @@
+h1
+  | Wallets
+table.table.table-striped.table-responsive
+  thead
+    tr
+      th Address
+      th Balance
+      th Created At
+
+  tbody
+    - @wallets.each do |wallet|
+      tr
+        td= link_to wallet.address, wallet
+        td= wallet.balance_btc
+        td= wallet.created_at
+
+= paginate @wallets
+
+
+
+
+
+
+
+
+

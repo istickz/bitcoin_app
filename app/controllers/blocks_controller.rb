@@ -1,6 +1,6 @@
 class BlocksController < ApplicationController
   def index
-    @blocks = Block.all
+    @blocks = Block.page(params[:page])
   end
 
   def show

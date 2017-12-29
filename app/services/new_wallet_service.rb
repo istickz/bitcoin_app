@@ -1,12 +1,8 @@
 class NewWalletService < BaseService
-  def initialize(user: nil)
-    @user = user
-  end
-
   def call
     wallet = Wallet.new(generate_address)
-    wallet.user = @user if @user.present?
     wallet.save
+    wallet
   end
 
   private
